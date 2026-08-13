@@ -9,6 +9,8 @@
     "stacks": "node tools/boilerplate.mjs list",
     "create": "node tools/boilerplate.mjs create",
     "feature:new": "node tools/boilerplate.mjs feature",
-    "spec:audit": "node tools/spec-audit.mjs"
+    "spec:audit": "node tools/spec-audit.mjs",
+    "validate": "node tools/validate.mjs",
+    "test": "npm run validate && npm run spec:audit"
   }
 }
