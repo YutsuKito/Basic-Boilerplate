@@ -14,6 +14,10 @@ const aliases = new Map([
 ]);
 const stacks = [...new Set(aliases.values())].sort();
 
+function loadJson(file) {
+  return JSON.parse(fs.readFileSync(file, "utf8"));
+}
+
 function titleFromSlug(slug) {
   return slug.split(/[-_]+/).filter(Boolean)
     .map((part) => part[0].toUpperCase() + part.slice(1)).join(" ");
@@ -27,7 +31,7 @@ function render(content, slug) {
 }
 
 function writeManifest(manifestPath, destination) {
-  const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+  const manifest = loadJson(manifestPath);
   for (const [relativePath, content] of Object.entries(manifest.files)) {
     const target = path.join(destination, relativePath);
     fs.mkdirSync(path.dirname(target), { recursive: true });
@@ -46,7 +50,10 @@ function createProject(stackInput, destinationInput) {
   }
   fs.mkdirSync(destination, { recursive: true });
 
-  writeManifest(path.join(root, "templates", "stacks", `${stack}.json`), destination);
+  const registry = loadJson(path.join(root, "templates", "registry.json"));
+  const manifestName = registry[stack];
+  if (!manifestName) throw new Error(`No template is registered for ${stack}.`);
+  writeManifest(path.join(root, "templates", manifestName), destination);
 
   fs.mkdirSync(path.join(destination, ".spec"), { recursive: true });
   fs.copyFileSync(path.join(root, ".spec", "config.json"), path.join(destination, ".spec", "config.json"));
@@ -63,7 +70,7 @@ function createFeature(slug, base = root) {
     throw new Error("Feature slug must use lowercase kebab-case.");
   }
 
-  const templates = JSON.parse(fs.readFileSync(path.join(base, ".spec", "templates.json"), "utf8"));
+  const templates = loadJson(path.join(base, ".spec", "templates.json"));
   const destination = path.join(base, ".spec", "features", slug);
   if (fs.existsSync(destination)) throw new Error(`Feature already exists: ${destination}`);
 
@@ -78,12 +85,8 @@ const [command, ...args] = process.argv.slice(2);
 
 try {
   switch (command) {
-    case "list":
-      console.log(stacks.join("\n"));
-      break;
-    case "create":
-      createProject(args[0], args[1]);
-      break;
+    case "list": console.log(stacks.join("\n")); break;
+    case "create": createProject(args[0], args[1]); break;
     case "feature":
       if (!args[0]) throw new Error("Feature slug is required.");
       createFeature(args[0]);
