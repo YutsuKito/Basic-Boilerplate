@@ -1,0 +1,6 @@
+{
+  "files": {
+    "apps/api/src/app.ts": "export const health = () => ({ status: \"ok\", service: \"api\" });\nexport const readiness = () => ({ status: \"ready\" });\n",
+    "packages/auth/src/index.ts": "export type Role = \"user\" | \"admin\" | \"service\";\nexport type Permission = \"profile:read\" | \"profile:write\" | \"admin:read\" | \"admin:write\";\nexport const can = (roles: Role[], permission: Permission) => roles.includes(\"admin\") || (roles.includes(\"user\") && permission.startsWith(\"profile:\"));\n"
+  }
+}
