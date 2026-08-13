@@ -1,6 +1,6 @@
 # Feature: Complete Platform Boilerplate
 
-Status: COMPLETE
+Status: DRAFT
 Created: 2026-08-13
 
 ## Problem
@@ -18,36 +18,29 @@ Provide a composable multi-stack boilerplate where Node.js + TypeScript is first
 ### US-001
 As a developer, I want Node.js + TypeScript as a first-class stack so that I can start typed backend and SaaS projects directly.
 
-### US-002
-As a developer, I want reusable platform capabilities so that authentication, persistence, AI, security, observability and workers do not need to be reinvented.
-
-### US-003
-As a developer, I want profiles so that small projects remain small while SaaS, AI and worker projects receive the modules they need.
-
 ## Requirements
-- REQ-001: Add TypeScript/Node.js as a distinct first-class stack with aliases `typescript`, `ts`, `node`, `node-ts` and `node-typescript`.
+- REQ-001: Add TypeScript/Node.js as a distinct first-class stack.
 - REQ-002: Preserve JavaScript, Java, Rust, Python, C#, C++ and Go stack support.
-- REQ-003: Add composable profiles: `basic`, `api`, `saas`, `ai-agent`, `worker` and `research`.
-- REQ-004: The TypeScript platform must include configuration, PostgreSQL/Prisma, Redis-ready workers, auth/RBAC, AI provider abstraction, RAG contracts, security helpers, observability/logging and shared types.
-- REQ-005: The SaaS profile must provide Next.js/React web, Node.js/TypeScript API and worker-oriented project boundaries.
-- REQ-006: Add Docker/Compose development infrastructure for PostgreSQL and Redis without embedding credentials intended for production.
-- REQ-007: Generated projects must inherit the spec-driven structure and agent instructions.
-- REQ-008: Validation must mechanically verify registry aliases, profiles and required TypeScript platform files.
-- REQ-009: Document architecture, CLI examples and extension points.
+- REQ-003: Add profiles: `basic`, `api`, `saas`, `ai-agent`, `worker` and `research`.
+- REQ-004: Add config, PostgreSQL/Prisma, Redis-ready workers, auth/RBAC, AI provider abstraction, RAG contracts, security, observability and shared types.
+- REQ-005: The SaaS profile provides Next.js/React web, Node.js/TypeScript API and worker boundaries.
+- REQ-006: Add Docker Compose for PostgreSQL and Redis.
+- REQ-007: Generated projects inherit `.spec` and `AGENTS.md`.
+- REQ-008: Validation verifies aliases, profiles and required TypeScript platform files.
+- REQ-009: Document architecture and extension points.
 
 ## Acceptance criteria
-- AC-001: `npm run stacks` lists both `javascript` and `typescript` plus Java, Rust, Python, C#, C++ and Go.
-- AC-002: `node tools/boilerplate.mjs create typescript <dir> --profile saas` creates the TypeScript platform scaffold.
-- AC-003: The generated TypeScript scaffold exposes modules for config, database, auth/RBAC, AI providers, RAG, security, observability and workers.
-- AC-004: The generated scaffold includes Docker Compose definitions for PostgreSQL and Redis and an `.env.example`.
-- AC-005: `basic`, `api`, `saas`, `ai-agent`, `worker` and `research` are recognized profiles.
-- AC-006: Existing non-TypeScript stack generation remains registered.
-- AC-007: Repository validation fails if a required profile, alias or TypeScript platform file is missing.
+- AC-001: `npm run stacks` lists JavaScript, TypeScript, Java, Rust, Python, C#, C++ and Go.
+- AC-002: TypeScript SaaS generation succeeds.
+- AC-003: Generated TypeScript exposes config, data, auth, AI/context, security, observability and worker modules.
+- AC-004: Generated project includes PostgreSQL/Redis local infrastructure and `.env.example`.
+- AC-005: Six profiles are recognized.
+- AC-006: Existing non-TypeScript stacks remain registered.
+- AC-007: Validation fails when required platform pieces are missing.
 
 ## Assumptions
-- [RESOLVED] ASSUMPTION-001: TypeScript is a separate canonical stack from JavaScript.
-- [RESOLVED] ASSUMPTION-002: `node` defaults to the TypeScript stack because it is the preferred Node baseline for this boilerplate.
-- [RESOLVED] ASSUMPTION-003: Framework-heavy variants remain profile-driven rather than becoming mandatory dependencies.
+- [RESOLVED] ASSUMPTION-001: TypeScript is separate from JavaScript.
+- [RESOLVED] ASSUMPTION-002: `node` resolves to TypeScript.
 
 ## Open questions
-- [RESOLVED] QUESTION-001: Should every language receive identical SaaS modules? No; the shared generator contract is universal, while framework-specific capabilities evolve per stack/profile.
+- [RESOLVED] QUESTION-001: Rich framework profiles are introduced incrementally per stack.
