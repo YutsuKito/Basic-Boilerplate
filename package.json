@@ -2,5 +2,13 @@
   "name": "basic-boilerplate",
   "version": "0.1.0",
   "private": true,
-  "type": "module"
+  "type": "module",
+  "description": "Multi-stack boilerplate with a spec-anchored engineering workflow.",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "stacks": "node tools/boilerplate.mjs list",
+    "create": "node tools/boilerplate.mjs create",
+    "feature:new": "node tools/boilerplate.mjs feature",
+    "spec:audit": "node tools/spec-audit.mjs"
+  }
 }
