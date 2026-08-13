@@ -1,0 +1,52 @@
+{
+  "basic": { "stacks": ["*"], "overlays": [] },
+  "api": {
+    "stacks": ["typescript"],
+    "overlays": [
+      { "manifest": "profile-data.json" },
+      { "source": "typescript/api", "target": "apps/api" },
+      { "source": "typescript/auth", "target": "packages/auth" }
+    ]
+  },
+  "saas": {
+    "stacks": ["typescript"],
+    "overlays": [
+      { "manifest": "profile-data.json" },
+      { "source": "typescript/api", "target": "apps/api" },
+      { "source": "typescript/auth", "target": "packages/auth" },
+      { "source": "typescript/worker", "target": "apps/worker" },
+      { "source": "typescript/queue", "target": "packages/queue" },
+      { "source": "typescript/ai-provider", "target": "packages/ai" },
+      { "source": "typescript/context", "target": "packages/context" },
+      { "source": "typescript/web", "target": "apps/web" }
+    ]
+  },
+  "ai-agent": {
+    "stacks": ["typescript"],
+    "overlays": [
+      { "manifest": "profile-data.json" },
+      { "source": "typescript/api", "target": "apps/api" },
+      { "source": "typescript/worker", "target": "apps/worker" },
+      { "source": "typescript/queue", "target": "packages/queue" },
+      { "source": "typescript/ai-provider", "target": "packages/ai" },
+      { "source": "typescript/context", "target": "packages/context" }
+    ]
+  },
+  "worker": {
+    "stacks": ["typescript"],
+    "overlays": [
+      { "manifest": "profile-data.json" },
+      { "source": "typescript/worker", "target": "apps/worker" },
+      { "source": "typescript/queue", "target": "packages/queue" }
+    ]
+  },
+  "research": {
+    "stacks": ["typescript"],
+    "overlays": [
+      { "manifest": "profile-data.json" },
+      { "source": "typescript/ai-provider", "target": "packages/ai" },
+      { "source": "typescript/context", "target": "packages/context" },
+      { "source": "typescript/research", "target": "apps/research" }
+    ]
+  }
+}
