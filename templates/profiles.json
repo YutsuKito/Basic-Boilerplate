@@ -1,26 +1,55 @@
 {
   "basic": {
     "description": "Minimal language baseline with spec-driven workflow.",
-    "supportedStacks": ["*"]
+    "supportedStacks": ["*"],
+    "overlays": []
   },
   "api": {
-    "description": "Backend API with config, persistence, auth, security and observability boundaries.",
-    "supportedStacks": ["typescript"]
+    "description": "Backend API with persistence, auth/RBAC, security and observability boundaries.",
+    "supportedStacks": ["typescript"],
+    "overlays": [
+      { "source": "typescript/data", "target": "." },
+      { "source": "typescript/api", "target": "apps/api" },
+      { "source": "typescript/auth", "target": "packages/auth" }
+    ]
   },
   "saas": {
-    "description": "Full TypeScript SaaS workspace with web, API, worker and shared platform packages.",
-    "supportedStacks": ["typescript"]
+    "description": "Full TypeScript SaaS workspace with web, API, worker, AI/RAG and shared platform packages.",
+    "supportedStacks": ["typescript"],
+    "overlays": [
+      { "source": "typescript/data", "target": "." },
+      { "source": "typescript/api", "target": "apps/api" },
+      { "source": "typescript/auth", "target": "packages/auth" },
+      { "source": "typescript/worker", "target": "." },
+      { "source": "typescript/ai", "target": "." },
+      { "source": "typescript/web", "target": "." }
+    ]
   },
   "ai-agent": {
     "description": "Agent-oriented service with AI providers, RAG, persistence, queue and observability contracts.",
-    "supportedStacks": ["typescript"]
+    "supportedStacks": ["typescript"],
+    "overlays": [
+      { "source": "typescript/data", "target": "." },
+      { "source": "typescript/api", "target": "apps/api" },
+      { "source": "typescript/worker", "target": "." },
+      { "source": "typescript/ai", "target": "." }
+    ]
   },
   "worker": {
-    "description": "Background worker with queue, config, persistence and observability.",
-    "supportedStacks": ["typescript"]
+    "description": "Background worker with queue, persistence and observability.",
+    "supportedStacks": ["typescript"],
+    "overlays": [
+      { "source": "typescript/data", "target": "." },
+      { "source": "typescript/worker", "target": "." }
+    ]
   },
   "research": {
-    "description": "Research-oriented TypeScript workspace with AI/RAG contracts and experiment boundaries.",
-    "supportedStacks": ["typescript"]
+    "description": "Research workspace with AI/RAG, experiment metadata and persistence boundaries.",
+    "supportedStacks": ["typescript"],
+    "overlays": [
+      { "source": "typescript/data", "target": "." },
+      { "source": "typescript/ai", "target": "." },
+      { "source": "typescript/research", "target": "." }
+    ]
   }
 }
