@@ -1,0 +1,9 @@
+{
+  "name": "data",
+  "files": {
+    "packages/database/package.json": "{\n  \"name\": \"@boilerplate/database\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"exports\": \"./src/index.ts\",\n  \"dependencies\": { \"@prisma/client\": \"latest\" },\n  \"devDependencies\": { \"prisma\": \"latest\", \"typescript\": \"latest\" }\n}\n",
+    "packages/database/src/index.ts": "import { PrismaClient } from \"@prisma/client\";\nconst state = globalThis as unknown as { prisma?: PrismaClient };\nexport const db = state.prisma ?? new PrismaClient();\nif (process.env.NODE_ENV !== \"production\") state.prisma = db;\n",
+    "packages/database/prisma/schema.prisma": "generator client {\n  provider = \"prisma-client-js\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url = env(\"DATABASE_URL\")\n}\n\nmodel AuditLog {\n  id String @id @default(cuid())\n  actorId String?\n  action String\n  resource String\n  metadata Json?\n  createdAt DateTime @default(now())\n}\n",
+    "docker-compose.yml": "services:\n  postgres:\n    image: postgres:17-alpine\n    environment:\n      POSTGRES_USER: ${POSTGRES_USER:-app}\n      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-localdev}\n      POSTGRES_DB: ${POSTGRES_DB:-app}\n    ports:\n      - \"5432:5432\"\n    volumes:\n      - postgres_data:/var/lib/postgresql/data\n  redis:\n    image: redis:7-alpine\n    ports:\n      - \"6379:6379\"\n    volumes:\n      - redis_data:/data\nvolumes:\n  postgres_data:\n  redis_data:\n"
+  }
+}
