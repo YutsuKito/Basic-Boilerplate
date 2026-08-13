@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "workflow": ["specify", "design", "tasks", "execute", "audit"],
+  "featureRoot": ".spec/features",
+  "requiredFeatureFiles": ["spec.md", "design.md", "tasks.md", "evidence.md"],
+  "completeStatus": "COMPLETE",
+  "parallelExecution": "opt-in",
+  "taskCommitPolicy": "one-task-one-concern"
+}
