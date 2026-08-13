@@ -1,0 +1,26 @@
+{
+  "basic": {
+    "description": "Minimal language baseline with spec-driven workflow.",
+    "supportedStacks": ["*"]
+  },
+  "api": {
+    "description": "Backend API with config, persistence, auth, security and observability boundaries.",
+    "supportedStacks": ["typescript"]
+  },
+  "saas": {
+    "description": "Full TypeScript SaaS workspace with web, API, worker and shared platform packages.",
+    "supportedStacks": ["typescript"]
+  },
+  "ai-agent": {
+    "description": "Agent-oriented service with AI providers, RAG, persistence, queue and observability contracts.",
+    "supportedStacks": ["typescript"]
+  },
+  "worker": {
+    "description": "Background worker with queue, config, persistence and observability.",
+    "supportedStacks": ["typescript"]
+  },
+  "research": {
+    "description": "Research-oriented TypeScript workspace with AI/RAG contracts and experiment boundaries.",
+    "supportedStacks": ["typescript"]
+  }
+}
