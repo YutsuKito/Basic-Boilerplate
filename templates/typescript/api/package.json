@@ -1,0 +1,19 @@
+{
+  "name": "@boilerplate/api",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/main.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@boilerplate/config": "workspace:*",
+    "@boilerplate/observability": "workspace:*",
+    "@boilerplate/security": "workspace:*",
+    "fastify": "latest"
+  },
+  "devDependencies": {
+    "tsx": "latest",
+    "typescript": "latest"
+  }
+}
