@@ -1,9 +1,36 @@
 {
-  "javascript": "javascript-stack.json",
-  "java": "java-stack.json",
-  "rust": "rust.json",
-  "python": "python.json",
-  "csharp": "csharp.json",
-  "cpp": "cpp.json",
-  "go": "golang.json"
+  "stacks": {
+    "javascript": {
+      "manifest": "javascript-stack.json",
+      "aliases": ["javascript", "js", "node-js"]
+    },
+    "typescript": {
+      "manifest": "typescript-platform.json",
+      "aliases": ["typescript", "ts", "node", "node-ts", "node-typescript"]
+    },
+    "java": {
+      "manifest": "java-stack.json",
+      "aliases": ["java"]
+    },
+    "rust": {
+      "manifest": "rust.json",
+      "aliases": ["rust", "rs"]
+    },
+    "python": {
+      "manifest": "python.json",
+      "aliases": ["python", "py"]
+    },
+    "csharp": {
+      "manifest": "csharp.json",
+      "aliases": ["csharp", "c#", "cs", "dotnet"]
+    },
+    "cpp": {
+      "manifest": "cpp.json",
+      "aliases": ["cpp", "c++"]
+    },
+    "go": {
+      "manifest": "golang.json",
+      "aliases": ["go", "golang"]
+    }
+  }
 }
