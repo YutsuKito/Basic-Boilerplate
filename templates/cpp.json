@@ -1,0 +1,1 @@
+{"stack":"cpp","version":1,"files":{"main.cpp":"#include <iostream>\nint main() { std::cout << \"Basic Boilerplate C++\\n\"; }\n"}}

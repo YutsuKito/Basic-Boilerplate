@@ -1,0 +1,9 @@
+{
+  "javascript": "javascript-stack.json",
+  "java": "java-stack.json",
+  "rust": "rust.json",
+  "python": "python.json",
+  "csharp": "csharp.json",
+  "cpp": "cpp.json",
+  "go": "golang.json"
+}

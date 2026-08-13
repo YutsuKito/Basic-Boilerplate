@@ -1,0 +1,1 @@
+{"stack":"java","version":1,"files":{"App.java":"public class App { public static void main(String[] args) { System.out.println(\"Basic Boilerplate Java\"); } }\n"}}

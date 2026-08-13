@@ -1,0 +1,8 @@
+{
+  "stack": "javascript",
+  "version": 1,
+  "files": {
+    "main.js": "const check = process.argv.includes(\"--check\");\nconsole.log(check ? JSON.stringify({ status: \"ok\" }) : \"Basic Boilerplate JavaScript\");\n",
+    "README.md": "# JavaScript stack\n\nRequires Node.js 22+.\n\n```bash\nnode main.js\nnode main.js --check\n```\n"
+  }
+}

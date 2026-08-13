@@ -1,0 +1,11 @@
+{
+  "stack": "javascript",
+  "version": 1,
+  "files": {
+    "package.json": "{\n  \"name\": \"basic-boilerplate-javascript\",\n  \"version\": \"0.1.0\",\n  \"private\": true,\n  \"type\": \"module\",\n  \"scripts\": {\n    \"start\": \"node src/server.js\",\n    \"test\": \"node --test\"\n  },\n  \"engines\": {\n    \"node\": \">=22\"\n  }\n}\n",
+    "src/server.js": "import http from \"node:http\";\nimport { pathToFileURL } from \"node:url\";\n\nexport function createServer() {\n  return http.createServer((req, res) => {\n    if (req.method === \"GET\" && req.url === \"/health\") {\n      res.writeHead(200, { \"content-type\": \"application/json\" });\n      res.end(JSON.stringify({ status: \"ok\" }));\n      return;\n    }\n\n    res.writeHead(404, { \"content-type\": \"application/json\" });\n    res.end(JSON.stringify({ error: \"not_found\" }));\n  });\n}\n\nconst isMain = process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;\n\nif (isMain) {\n  const port = Number(process.env.PORT ?? 8080);\n  createServer().listen(port, \"0.0.0.0\", () => {\n    console.log(`javascript service listening on :${port}`);\n  });\n}\n",
+    "test/server.test.js": "import assert from \"node:assert/strict\";\nimport test from \"node:test\";\nimport { createServer } from \"../src/server.js\";\n\ntest(\"GET /health returns the common health contract\", async () => {\n  const server = createServer();\n  await new Promise((resolve) => server.listen(0, \"127.0.0.1\", resolve));\n\n  try {\n    const address = server.address();\n    const response = await fetch(`http://127.0.0.1:${address.port}/health`);\n    assert.equal(response.status, 200);\n    assert.deepEqual(await response.json(), { status: \"ok\" });\n  } finally {\n    await new Promise((resolve, reject) => server.close((error) => (error ? reject(error) : resolve())));\n  }\n});\n",
+    "Dockerfile": "FROM node:22-alpine\nWORKDIR /app\nCOPY package.json ./\nCOPY src ./src\nENV PORT=8080\nEXPOSE 8080\nCMD [\"npm\", \"start\"]\n",
+    "README.md": "# JavaScript stack\n\nMinimal Node.js service using the built-in HTTP server and native test runner.\n\n```bash\nnpm test\nnpm start\n```\n\nHealth: `GET http://localhost:8080/health`.\n"
+  }
+}
